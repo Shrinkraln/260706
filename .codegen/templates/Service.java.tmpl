@@ -1,0 +1,37 @@
+// ============================================================
+// 模板: Service 接口
+// 变量: {{ENTITY_NAME}} {{PK_TYPE}}
+// ============================================================
+package com.uas.core.service;
+
+import com.uas.core.entity.{{ENTITY_NAME}};
+
+import java.util.List;
+
+public interface {{ENTITY_NAME}}Service {
+
+    /**
+     * 列表查询（支持可选过滤）
+     */
+    List<{{ENTITY_NAME}}> list(String zoneId);
+
+    /**
+     * 详情
+     */
+    {{ENTITY_NAME}} getById({{PK_TYPE}} id);
+
+    /**
+     * 新增
+     */
+    {{ENTITY_NAME}} create({{ENTITY_NAME}} entity);
+
+    /**
+     * 更新
+     */
+    {{ENTITY_NAME}} update({{ENTITY_NAME}} entity);
+
+    /**
+     * 删除
+     */
+    void delete({{PK_TYPE}} id);
+}

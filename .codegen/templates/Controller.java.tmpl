@@ -1,0 +1,48 @@
+// ============================================================
+// 模板: Controller
+// 变量: {{ENTITY_NAME}} {{ENTITY_VAR}} {{PK_TYPE}} {{URL_PATH}}
+// ============================================================
+package com.uas.api.controller;
+
+import com.uas.common.result.ApiResult;
+import com.uas.core.entity.{{ENTITY_NAME}};
+import com.uas.core.service.{{ENTITY_NAME}}Service;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/{{URL_PATH}}")
+@RequiredArgsConstructor
+public class {{ENTITY_NAME}}Controller {
+
+    private final {{ENTITY_NAME}}Service {{ENTITY_VAR}}Service;
+
+    @GetMapping
+    public ApiResult<List<{{ENTITY_NAME}}>> list(@RequestParam(required = false) String zoneId) {
+        return ApiResult.ok({{ENTITY_VAR}}Service.list(zoneId));
+    }
+
+    @GetMapping("/{id}")
+    public ApiResult<{{ENTITY_NAME}}> detail(@PathVariable {{PK_TYPE}} id) {
+        return ApiResult.ok({{ENTITY_VAR}}Service.getById(id));
+    }
+
+    @PostMapping
+    public ApiResult<{{ENTITY_NAME}}> create(@RequestBody {{ENTITY_NAME}} entity) {
+        return ApiResult.ok({{ENTITY_VAR}}Service.create(entity));
+    }
+
+    @PutMapping("/{id}")
+    public ApiResult<{{ENTITY_NAME}}> update(@PathVariable {{PK_TYPE}} id, @RequestBody {{ENTITY_NAME}} entity) {
+        entity.setId(id);
+        return ApiResult.ok({{ENTITY_VAR}}Service.update(entity));
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiResult<Void> delete(@PathVariable {{PK_TYPE}} id) {
+        {{ENTITY_VAR}}Service.delete(id);
+        return ApiResult.ok(null);
+    }
+}

@@ -1,0 +1,33 @@
+// ============================================================
+// 模板: Entity 实体类
+// 变量: {{ENTITY_NAME}} {{TABLE_NAME}} {{PK_TYPE}} {{ID_IMPORT}} {{ID_ANNOTATION}}
+// ============================================================
+package com.uas.core.entity;
+
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+{{#if LONG_ID}}
+import com.baomidou.mybatisplus.annotation.IdType;
+{{/if}}
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+@TableName("{{TABLE_NAME}}")
+public class {{ENTITY_NAME}} {
+
+{{#if STRING_ID}}
+    @TableId
+    private String id;
+{{else}}
+    @TableId(type = IdType.AUTO)
+    private Long id;
+{{/if}}
+
+    // TODO: 替换为实际业务字段
+    private String name;
+    private String status;
+    private String zoneId;
+    private LocalDateTime createdAt;
+}

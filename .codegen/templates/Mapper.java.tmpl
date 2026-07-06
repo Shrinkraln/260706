@@ -1,0 +1,15 @@
+// ============================================================
+// 模板: Mapper 接口
+// 变量: {{ENTITY_NAME}} {{PK_TYPE}}
+// ============================================================
+package com.uas.core.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.uas.core.entity.{{ENTITY_NAME}};
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface {{ENTITY_NAME}}Mapper extends BaseMapper<{{ENTITY_NAME}}> {
+    // BaseMapper 已提供: selectList, selectById, insert, updateById, deleteById
+    // 复杂查询在此添加方法签名，XML 中写 SQL
+}

@@ -1,0 +1,53 @@
+// ============================================================
+// 模板: Service 实现类
+// 变量: {{ENTITY_NAME}} {{ENTITY_VAR}} {{PK_TYPE}}
+// ============================================================
+package com.uas.core.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.uas.core.entity.{{ENTITY_NAME}};
+import com.uas.core.mapper.{{ENTITY_NAME}}Mapper;
+import com.uas.core.service.{{ENTITY_NAME}}Service;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class {{ENTITY_NAME}}ServiceImpl implements {{ENTITY_NAME}}Service {
+
+    private final {{ENTITY_NAME}}Mapper {{ENTITY_VAR}}Mapper;
+
+    @Override
+    public List<{{ENTITY_NAME}}> list(String zoneId) {
+        LambdaQueryWrapper<{{ENTITY_NAME}}> wrapper = new LambdaQueryWrapper<{{ENTITY_NAME}}>()
+                .eq(zoneId != null && !zoneId.isBlank(), {{ENTITY_NAME}}::getZoneId, zoneId)
+                .orderByDesc({{ENTITY_NAME}}::getCreatedAt);
+        return {{ENTITY_VAR}}Mapper.selectList(wrapper);
+    }
+
+    @Override
+    public {{ENTITY_NAME}} getById({{PK_TYPE}} id) {
+        return {{ENTITY_VAR}}Mapper.selectById(id);
+    }
+
+    @Override
+    public {{ENTITY_NAME}} create({{ENTITY_NAME}} entity) {
+        {{ENTITY_VAR}}Mapper.insert(entity);
+        return entity;
+    }
+
+    @Override
+    public {{ENTITY_NAME}} update({{ENTITY_NAME}} entity) {
+        {{ENTITY_VAR}}Mapper.updateById(entity);
+        return entity;
+    }
+
+    @Override
+    public void delete({{PK_TYPE}} id) {
+        {{ENTITY_VAR}}Mapper.deleteById(id);
+    }
+}
